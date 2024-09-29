@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            border: 1px solid #228b22;
+            min-width: 200px;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+            .sidebar .nav-link {
+                color: #000;
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+                .sidebar .nav-link.active {
+                    background-color: #28a745;
+                    color: white;
+                    border-radius: 5px;
+                }
+
+        .top-bar {
+            border: 2.5px solid #228b22;
+            background-color: #d4ebda;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+        }
+
+            .student-info img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .student-info .name {
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+            .student-info .role {
+                font-size: 1rem;
+            }
+
+        .notification-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+            .notification-icons .icon {
+                font-size: 2.5rem;
+                color: #228b22;
+                cursor: pointer;
+            }
+
+        h2.mt-4 {
+            text-align: center;
+        }
+
+        #attendanceMonth {
+            color: #228b22;
+        }
+
+
+        .calendar .present {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .calendar .absent {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .calendar-nav button {
+                background-color: #228b22;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                font-size: 1.5rem; /* Adjust icon size */
+                width: 100px;
+            }
+
+
+            .calendar-nav h4 {
+                margin: 0;
+                flex: 1;
+                text-align: center;
+                font-size: 1.5rem;
+            }
+
+
+
+        .library-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .library-nav button {
+                width: 100px;
+            }
+
+        .library-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .library-nav button {
+                background-color: #228b22;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                font-size: 1.5rem; 
+            }
+
+            .library-nav h4 {
+                margin: 0;
+                flex: 1;
+                text-align: center;
+                font-size: 1.5rem;
+                color: #228b22; 
+            }
+
+        .canteen-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .canteen-table th,
+            .canteen-table td {
+                border: 2px solid #228b22;
+                background-color: #d4ebda; /* Set background color */
+            }
+
+
+    </style>
+</head>
+<body>
+    <!--header-->
+    <div class="top-bar">
+        <div class="student-info">
+            <img src="https://via.placeholder.com/50" alt="Student Photo">
+            <div>
+                <div class="name">Andrew C. Peña</div>
+                <div class="role">STUDENT</div>
+            </div>
+        </div>
+        <div class="notification-icons">
+            <!-- The bell icon is a button that will trigger the modal -->
+            <button id="notificationBell" class="icon btn btn-link" style="font-size: 2rem; color: #228b22;" data-toggle="modal" data-target="#absenceModal">
+                <i class="fas fa-bell"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="absenceModal" tabindex="-1" role="dialog" aria-labelledby="absenceModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="absenceModalLabel">Student Absence Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 id="absenceDate">June 21, 2024</h5>
+                    <p class="text-danger">ABSENT</p>
+                    <a href="#" class="btn btn-outline-danger">
+                        <i class="fa fa-file-pdf-o"></i> Attach Excuse Letter
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul class="nav flex-column mb-auto" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="attendance-tab" data-toggle="tab" href="#attendance" role="tab" aria-controls="attendance" aria-selected="true">Attendance Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="library-tab" data-toggle="tab" href="#library" role="tab" aria-controls="library" aria-selected="false">Library Record</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="canteen-tab" data-toggle="tab" href="#canteen" role="tab" aria-controls="canteen" aria-selected="false">Canteen</a>
+                </li>
+                <li class="nav-item mt-auto">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="tab-content" id="myTabContent">
+                <!-- Attendance Calendar Section -->
+                <div class="tab-pane fade show active" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
+                    <h2 class="mt-4">Attendance Calendar</h2>
+                    <!-- Month Navigation -->
+                    <div class="calendar-nav d-flex justify-content-between align-items-center mb-4">
+                        <button id="prevMonth" class="btn btn-outline-success">
+                            <i class="fas fa-chevron-left"></i> <!-- Font Awesome left arrow icon -->
+                        </button>
+                        <h4 id="attendanceMonth" class="mx-3">June 2024</h4> <!-- Added margin for spacing -->
+                        <button id="nextMonth" class="btn btn-outline-success">
+                            <i class="fas fa-chevron-right"></i> <!-- Font Awesome right arrow icon -->
+                        </button>
+                    </div>
+                    <div class="calendar mt-4">
+                        <table class="table table-bordered text-center calendar-table">
+                            <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendarBody">
+                                <!-- Calendar days will be populated here -->
+                            </tbody>
+                        </table>
+                        <div class="mt-4 rounded p-3" style="border: 2px solid #228b22; display: inline-block;">
+                            <h5 id="absenceDate">June 21, 2024</h5>
+                            <p class="text-danger">ABSENT</p>
+                            <a href="#" class="btn btn-outline-danger">
+                                <i class="fa fa-file-pdf-o"></i> Attach Excuse Letter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Library Record Section -->
+                <div class="tab-pane fade" id="library" role="tabpanel" aria-labelledby="library-tab">
+                    <h2 class="mt-4">Library Record</h2>
+                    <!-- Month Navigation -->
+                    <div class="library-nav mb-4">
+                        <button id="prevLibraryMonth" class="btn btn-outline-success">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h4 id="libraryMonth">June 2024</h4>
+                        <button id="nextLibraryMonth" class="btn btn-outline-success">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="mt-4" id="libraryRecordContent">
+                        <!-- Content will be updated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Canteen Section -->
+                <div class="tab-pane fade" id="canteen" role="tabpanel" aria-labelledby="canteen-tab">
+                    <h2 class="mt-4">Canteen</h2>
+                    <table class="table table-bordered canteen-table mt-4">
+
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: bold;">Date</td>
+                                <td style="font-weight: bold;">Item</td>
+                                <td style="font-weight: bold;">Price</td>
+                            </tr>
+                            <tr>
+                                <td>6/22/24</td>
+                                <td>Mountain Dew</td>
+                                <td>P 25.00</td>
+                            </tr>
+                            <tr>
+                                <td>6/22/24</td>
+                                <td>Rice Meal (2 rice)</td>
+                                <td>P 70.00</td>
+                            </tr>
+                            <tr>
+                                <td>6/23/24</td>
+                                <td>1.5L Coke</td>
+                                <td>P 85.00</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-right"><strong>Total</strong></td>
+                                <td>P 180.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <div class="mt-4 text-center" style="border: 2px solid #228b22; padding: 20px;">
+                            <p>Scan QR for Payment</p>
+                            <img src="QR_code_for_mobile_English_Wikipedia.png" alt="QR Code" style="width: 200px; display: block; margin: 0 auto;">
+                            <a href="#" class="btn btn-outline-success mt-3 d-block" style="width: 200px; margin: 0 auto;">
+                                <i class="fa fa-file-pdf-o"></i> Attach Screenshot of Payment
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('notificationBell').addEventListener('click', function () {
+            const absenceInfo = document.getElementById('absenceInfo');
+            if (absenceInfo.style.display === 'none') {
+                absenceInfo.style.display = 'block';
+            } else {
+                absenceInfo.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        // JavaScript for Attendance Calendar
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        let currentYear = new Date().getFullYear();
+        let currentMonth = new Date().getMonth();
+
+        function updateCalendar() {
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const calendarBody = document.getElementById('calendarBody');
+            const monthYearLabel = document.getElementById('attendanceMonth');
+            const absenceDate = document.getElementById('absenceDate');
+
+            // Update month/year label
+            monthYearLabel.innerHTML = `${months[currentMonth]} ${currentYear}`;
+            absenceDate.innerHTML = `June 21, ${currentYear}`;
+
+            // Generate calendar days
+            let days = '';
+            // Empty cells before the first day
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                days += '<td></td>';
+            }
+            // Actual days
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                let className = '';
+                if (currentMonth === 5) {
+                    if (i >= 17 && i <= 20) {
+                        className = 'present';
+                    } else if (i === 21) {
+                        className = 'absent';
+                    }
+                }
+                days += `<td class="${className}">${i}</td>`;
+                if ((i + firstDay.getDay()) % 7 === 0) {
+                    days += '</tr><tr>';
+                }
+            }
+            while ((days.match(/<\/td>/g) || []).length % 7 !== 0) {
+                days += '<td></td>';
+            }
+
+            calendarBody.innerHTML = `<tr>${days}</tr>`;
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            if (currentMonth === 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else {
+                currentMonth--;
+            }
+            updateCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            if (currentMonth === 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else {
+                currentMonth++;
+            }
+            updateCalendar();
+        });
+
+        // Initial load
+        updateCalendar();
+
+        // JavaScript for Library Record Navigation
+        let libraryYear = currentYear;
+        let libraryMonth = currentMonth;
+
+        function updateLibrary() {
+            const monthYearLabel = document.getElementById('libraryMonth');
+            const libraryRecordContent = document.getElementById('libraryRecordContent');
+
+            // Update month/year label
+            monthYearLabel.innerHTML = `${months[libraryMonth]} ${libraryYear}`;
+
+            // Display library record only for June
+            if (libraryMonth === 5) {
+                libraryRecordContent.innerHTML = `
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card p-4 text-center" style="border: 2px solid #228b22; background-color: #d4ebda;">
+                                    <h5>Time Spent in Library:</h5>
+                                    <h3>4 Hours 20 Mins</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card p-4 text-center" style="border: 2px solid #228b22; background-color: #d4ebda;">
+                                    <h5>Required Time:</h5>
+                                    <h3>8 Hours</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <h5>You Still Need: 3 Hours and 40 Mins</h5>
+                            <div class="progress mt-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    `;
+            } else {
+                libraryRecordContent.innerHTML = '<p>No records available for this month.</p>';
+            }
+        }
+
+        document.getElementById('prevLibraryMonth').addEventListener('click', () => {
+            if (libraryMonth === 0) {
+                libraryMonth = 11;
+                libraryYear--;
+            } else {
+                libraryMonth--;
+            }
+            updateLibrary();
+        });
+
+        document.getElementById('nextLibraryMonth').addEventListener('click', () => {
+            if (libraryMonth === 11) {
+                libraryMonth = 0;
+                libraryYear++;
+            } else {
+                libraryMonth++;
+            }
+            updateLibrary();
+        });
+
+        // Initial load for library record
+        updateLibrary();
+    </script>
+
+</body>
+</html>
