@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -118,7 +118,7 @@
                 color: white;
                 border: none;
                 padding: 5px 10px;
-                font-size: 1.5rem; /* Adjust icon size */
+                font-size: 1.5rem; 
                 width: 100px;
             }
 
@@ -174,7 +174,7 @@
             .canteen-table th,
             .canteen-table td {
                 border: 2px solid #228b22;
-                background-color: #d4ebda; /* Set background color */
+                background-color: #d4ebda; 
             }
 
 
@@ -191,7 +191,6 @@
             </div>
         </div>
         <div class="notification-icons">
-            <!-- The bell icon is a button that will trigger the modal -->
             <button id="notificationBell" class="icon btn btn-link" style="font-size: 2rem; color: #228b22;" data-toggle="modal" data-target="#absenceModal">
                 <i class="fas fa-bell"></i>
             </button>
@@ -250,11 +249,11 @@
                     <!-- Month Navigation -->
                     <div class="calendar-nav d-flex justify-content-between align-items-center mb-4">
                         <button id="prevMonth" class="btn btn-outline-success">
-                            <i class="fas fa-chevron-left"></i> <!-- Font Awesome left arrow icon -->
+                            <i class="fas fa-chevron-left"></i> 
                         </button>
-                        <h4 id="attendanceMonth" class="mx-3">June 2024</h4> <!-- Added margin for spacing -->
+                        <h4 id="attendanceMonth" class="mx-3">June 2024</h4> 
                         <button id="nextMonth" class="btn btn-outline-success">
-                            <i class="fas fa-chevron-right"></i> <!-- Font Awesome right arrow icon -->
+                            <i class="fas fa-chevron-right"></i> 
                         </button>
                     </div>
                     <div class="calendar mt-4">
@@ -271,7 +270,6 @@
                                 </tr>
                             </thead>
                             <tbody id="calendarBody">
-                                <!-- Calendar days will be populated here -->
                             </tbody>
                         </table>
                         <div class="mt-4 rounded p-3" style="border: 2px solid #228b22; display: inline-block;">
@@ -385,11 +383,9 @@
 
             // Generate calendar days
             let days = '';
-            // Empty cells before the first day
             for (let i = 0; i < firstDay.getDay(); i++) {
                 days += '<td></td>';
             }
-            // Actual days
             for (let i = 1; i <= lastDay.getDate(); i++) {
                 let className = '';
                 if (currentMonth === 5) {
@@ -431,7 +427,6 @@
             updateCalendar();
         });
 
-        // Initial load
         updateCalendar();
 
         // JavaScript for Library Record Navigation
@@ -494,7 +489,6 @@
             updateLibrary();
         });
 
-        // Initial load for library record
         updateLibrary();
     </script>
 
