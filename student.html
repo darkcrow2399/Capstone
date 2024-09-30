@@ -167,14 +167,31 @@
             }
 
         .canteen-table {
+            margin-top: 20px;
             border-collapse: collapse;
             width: 100%;
+            font-size: 0.9rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
         }
 
             .canteen-table th,
             .canteen-table td {
-                border: 2px solid #228b22;
-                background-color: #d4ebda; 
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .canteen-table th {
+                background-color: #228b22;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            .canteen-table tr:hover {
+                background-color: #f1f1f1;
             }
 
 
@@ -245,7 +262,7 @@
             <div class="tab-content" id="myTabContent">
                 <!-- Attendance Calendar Section -->
                 <div class="tab-pane fade show active" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
-                    <h2 class="mt-4">Attendance Calendar</h2>
+                    <h2 class="mt-4">ATTENDANCE CALENDAR</h2>
                     <!-- Month Navigation -->
                     <div class="calendar-nav d-flex justify-content-between align-items-center mb-4">
                         <button id="prevMonth" class="btn btn-outline-success">
@@ -297,39 +314,48 @@
                     </div>
 
                     <div class="mt-4" id="libraryRecordContent">
-                        
                     </div>
                 </div>
 
                 <!-- Canteen Section -->
                 <div class="tab-pane fade" id="canteen" role="tabpanel" aria-labelledby="canteen-tab">
                     <h2 class="mt-4">Canteen</h2>
-                    <table class="table table-bordered canteen-table mt-4">
+                    <table class="canteen-table">
 
                         <tbody>
                             <tr>
-                                <td style="font-weight: bold;">Date</td>
-                                <td style="font-weight: bold;">Item</td>
-                                <td style="font-weight: bold;">Price</td>
+                                <th>Date</th>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>6/21/24</td>
+                                <td>Piatos</td>
+                                <td>P 25.00</td>
+                                <td>Paid</td>
                             </tr>
                             <tr>
                                 <td>6/22/24</td>
                                 <td>Mountain Dew</td>
                                 <td>P 25.00</td>
+                                <td>Pending</td>
                             </tr>
                             <tr>
                                 <td>6/22/24</td>
                                 <td>Rice Meal (2 rice)</td>
                                 <td>P 70.00</td>
+                                <td>Pending</td>
                             </tr>
                             <tr>
                                 <td>6/23/24</td>
                                 <td>1.5L Coke</td>
                                 <td>P 85.00</td>
+                                <td>Pending</td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="text-right"><strong>Total</strong></td>
-                                <td>P 180.00</td>
+                                <td><strong>P 180.00</strong></td>
                             </tr>
                         </tbody>
                     </table>
