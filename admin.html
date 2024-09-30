@@ -1,0 +1,550 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            border: 1px solid #228b22;
+            min-width: 200px;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+            .sidebar .nav-link {
+                color: #000;
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+
+                .sidebar .nav-link.active {
+                    background-color: #28a745;
+                    color: white;
+                    border-radius: 5px;
+                }
+
+        .top-bar {
+            border: 2.5px solid #228b22;
+            background-color: #d4ebda;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .Admin-info {
+            display: flex;
+            align-items: center;
+        }
+
+            .Admin-info img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            .Admin-info .name {
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+            .Admin-info .role {
+                font-size: 1rem;
+            }
+
+        .notification-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+            .notification-icons .icon {
+                font-size: 2.5rem;
+                color: #228b22;
+                cursor: pointer;
+            }
+
+        h2.mt-4 {
+            text-align: center;
+        }
+
+        .stat-box {
+            border: 2px solid #228b22;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 10px;
+            background-color: #e6f4ea;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            padding: 5px 10px;
+            background-color: #fff;
+            max-width: 300px;
+            margin-right: 20px;
+        }
+
+            .search-bar input {
+                border: none;
+                outline: none;
+                flex: 1;
+                padding: 5px;
+                border-radius: 25px;
+            }
+
+            .search-bar button {
+                border: none;
+                background: none;
+                cursor: pointer;
+                color: #228b22;
+            }
+
+        /* Dashboard Table Styles */
+        .dashboard-table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 0.9rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+            .dashboard-table th,
+            .dashboard-table td {
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .dashboard-table th {
+                background-color: #228b22;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            .dashboard-table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        /* Student Info Section Styles */
+        #student-info {
+            display: none;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+            #student-info h4 {
+                margin-bottom: 15px;
+            }
+
+            #student-info img {
+                width: 150px;
+                height: 150px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+        #faculty-info {
+            display: none;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+            #faculty-info h4 {
+                margin-bottom: 15px;
+            }
+
+            #faculty-info img {
+                width: 150px;
+                height: 150px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="Admin-info">
+            <img src="https://via.placeholder.com/50" alt="Admin Photo">
+            <div>
+                <div class="name">Micky Davila</div>
+                <div class="role">ADMIN</div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." aria-label="Search">
+            <button type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div class="notification-icons">
+            <i class="fas fa-bell icon"></i>
+            <i class="fas fa-cog icon"></i>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" id="dashboard-link">DASHBOARD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="classes-link">Classes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="students-link">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="faculty-link">Faculty/Staff</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Diploma Generator</a>
+                </li>
+                <li class="nav-item mt-auto">
+                    <a class="nav-link" href="#">LOGOUT</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Dashboard Overview -->
+            <div id="dashboard-content">
+                <h2 class="mt-4">ADMIN DASHBOARD</h2>
+                <div class="d-flex justify-content-around mt-4">
+                    <div class="stat-box">
+                        <h3>STUDENTS</h3>
+                        <h2>120</h2>
+                    </div>
+                    <div class="stat-box">
+                        <h3>TEACHERS</h3>
+                        <h2>5</h2>
+                    </div>
+                    <div class="stat-box">
+                        <h3>STRANDS</h3>
+                        <h2>2</h2>
+                    </div>
+                    <div class="stat-box">
+                        <h3>SECTIONS</h3>
+                        <h2>4</h2>
+                    </div>
+                </div>
+
+                <!-- Dashboard Table -->
+                <h4 class="mt-4">STUDENTS</h4>
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>LRN</th>
+                            <th>Name</th>
+                            <th>Section</th>
+                            <th>Year Level</th>
+                            <th>Strand</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>123456789</td>
+                            <td>Andrew Pena</td>
+                            <td>Nazareth</td>
+                            <td>Grade 11</td>
+                            <td>GAS</td>
+                        </tr>
+                        <tr>
+                            <td>987654321</td>
+                            <td>Jade Ensomo</td>
+                            <td>Jordan</td>
+                            <td>Grade 12</td>
+                            <td>GAS</td>
+                        </tr>
+                        <tr>
+                            <td>112233445</td>
+                            <td>Michael Johnson</td>
+                            <td>Boromeo</td>
+                            <td>Grade 11</td>
+                            <td>HUMMS</td>
+                        </tr>
+                        <tr>
+                            <td>112233446</td>
+                            <td>Karl Smith</td>
+                            <td>Victory</td>
+                            <td>Grade 12</td>
+                            <td>HUMMS</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4 class="mt-4">FACULTY AND STAFF</h4>
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jannet Bautista</td>
+                            <td>English Teacher</td>
+                            <td>Senior high Faculty</td>
+                        </tr>
+                        <tr>
+                            <td>Micky Davila</td>
+                            <td>ICT Teacher</td>
+                            <td>Senior high Faculty</td>
+                        </tr>
+                        <tr>
+                            <td>Sheryl Buo</td>
+                            <td>Mathematics teacher</td>
+                            <td>Senior high Faculty</td>
+                        </tr>
+                        <tr>
+                            <td>Mike Katakutan</td>
+                            <td>Librarian</td>
+                            <td>Library</td>
+                        </tr>
+                        <tr>
+                            <td>Jerwin Villanueva</td>
+                            <td>Canteen Staff</td>
+                            <td>Canteen</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Classes Content -->
+            <div id="classes-content" style="display: none;">
+                <h2 class="mt-4">CLASSES</h2>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="btn btn-success btn-lg m-2">G11-Nazareth</div>
+                    <div class="btn btn-light btn-lg m-2">G11-Boromeo</div>
+                    <div class="btn btn-light btn-lg m-2">G12-Jordan</div>
+                    <div class="btn btn-light btn-lg m-2">G12-Victory</div>
+                    <div class="btn btn-outline-success btn-lg m-2">+</div>
+                </div>
+            </div>
+
+            <!-- Students Content -->
+            <div id="students-content" style="display: none;">
+                <h2 class="mt-4">STUDENTS</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Grade 11 - Nazareth</h4>
+                        <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Andrew Pena', '123456789', 'G11-Nazareth', 'andrew@gmail.com', 'Christopher Pena', 'pena@gmail.com','09111111111 ', 'https://via.placeholder.com/150')">Pena, Andrew</button><br />
+                        <div class="btn btn-outline-success btn-lg m-2">+</div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Grade 11 - Boromeo</h4>
+                        <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Michael Johnson', '112233445', 'G11-Nazareth', 'michael@gmail.com', 'John Johnson', 'johnson@gmail.com', '09222222222 ', 'https://via.placeholder.com/150')">Johnson, Michael</button><br />
+                        <div class="btn btn-outline-success btn-lg m-2">+</div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Grade 12 - Jordan</h4>
+                        <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Jade Ensomo', '987654321', 'G12-Jordan', 'jade@gmail.com', 'Pinner Ensomo', 'ensomo@gmail.com', '09333333333', 'https://via.placeholder.com/150')">Ensomo, Jade</button><br />
+                        <div class="btn btn-outline-success btn-lg m-2">+</div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Grade 12 - Victory</h4>
+                        <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Karl Smith', '112233446', 'G12-Jordan', 'karl@gmail.com', 'Jane Smith', 'smith@gmail.com', '09444444444', 'https://via.placeholder.com/150')">Smith, Karl</button><br />
+                        <div class="btn btn-outline-success btn-lg m-2">+</div>
+
+                    </div>
+                </div>
+                <div id="student-info">
+                    <h4>Student Details</h4>
+                    <img id="student-photo" src="https://via.placeholder.com/150" alt="Student Photo">
+                    <p><strong>Name:</strong> <span id="student-name"></span></p>
+                    <p><strong>LRN:</strong> <span id="student-lrn"></span></p>
+                    <p><strong>Section:</strong> <span id="student-section"></span></p>
+                    <p><strong>Student Email:</strong> <span id="student-email"></span></p>
+                    <p><strong>Parent/Guardian:</strong> <span id="parent-name"></span></p>
+                    <p><strong>Parent Email:</strong> <span id="parent-email"></span></p>
+                    <p><strong>Parent/Guadian Contact #:</strong> <span id="parent-contact"></span></p>
+                    <div class="d-flex mt-3" style="gap: 10px;">
+                        <a href="#" class="btn btn-outline-success">
+                            <i class="fa fa-file-pdf-o"></i> Edit
+                        </a>
+                        <a href="#" class="btn btn-outline-success">
+                            <i class="fa fa-file-pdf-o"></i> Save
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <i class="fa fa-file-pdf-o"></i> Delete
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="faculty-content" style="display: none;">
+                <h2 class="m-4">Faculty</h2>
+                <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Jannet Bautista', 'English Teacher', '09555555555', 'bautista@gmail.com', 'https://via.placeholder.com/150')">Bautista, Jannet</button><br />
+                <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Micky Davila', 'ICT Teacher', '09666666666', 'davila@gmail.com', 'https://via.placeholder.com/150')">Davila, Micky</button><br />
+                <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Sheryl Buo', 'Mathematics Teacher', '09777777777', 'ryl@gmail.com', 'https://via.placeholder.com/150')">Buo, Sheryl</button><br />
+
+                <h2 class="m-4">Staff</h2>
+                <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Mike Katakutan', 'Librarian', '09888888888', 'mike@gmail.com', 'https://via.placeholder.com/150')">Katakutan, Mike</button><br />
+                <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Jerwin Villanueva', 'Canteen staff', '09122222222', 'jerwin@gmail.com', 'https://via.placeholder.com/150')">Villanueva, Jerwin</button><br />
+
+            </div>
+            <div id="faculty-info">
+                <h4>Faculty Details</h4>
+                <img id="faculty-photo" src="https://via.placeholder.com/150" alt="Faculty Photo">
+                <p><strong>Name:</strong> <span id="faculty-name"></span></p>
+                <p><strong>Position:</strong> <span id="faculty-position"></span></p>
+                <p><strong>Contact #:</strong> <span id="faculty-number"></span></p>
+                <p><strong>Email:</strong> <span id="faculty-email"></span></p>
+                <div class="d-flex mt-3" style="gap: 10px;">
+                    <a href="#" class="btn btn-outline-success">
+                        <i class="fa fa-file-pdf-o"></i> Edit
+                    </a>
+                    <a href="#" class="btn btn-outline-success">
+                        <i class="fa fa-file-pdf-o"></i> Save
+                    </a>
+                    <a href="#" class="btn btn-danger">
+                        <i class="fa fa-file-pdf-o"></i> Delete
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript tab
+        const dashboardLink = document.getElementById('dashboard-link');
+        const classesLink = document.getElementById('classes-link');
+        const studentsLink = document.getElementById('students-link');
+        const dashboardContent = document.getElementById('dashboard-content');
+        const classesContent = document.getElementById('classes-content');
+        const studentsContent = document.getElementById('students-content');
+        const facultyLink = document.getElementById('faculty-link');
+        const facultyContent = document.getElementById('faculty-content');
+        const studentInfo = document.getElementById('student-info');
+        const facultyInfo = document.getElementById('faculty-info');
+
+        // Functions to manage tab visibility
+        dashboardLink.addEventListener('click', () => {
+            dashboardContent.style.display = 'block';
+            classesContent.style.display = 'none';
+            studentsContent.style.display = 'none';
+            facultyContent.style.display = 'none';
+            studentInfo.style.display = 'none'; 
+            facultyInfo.style.display = 'none';
+
+            setActiveLink(dashboardLink);
+        });
+
+        classesLink.addEventListener('click', () => {
+            dashboardContent.style.display = 'none';
+            classesContent.style.display = 'block';
+            studentsContent.style.display = 'none';
+            facultyContent.style.display = 'none';
+            studentInfo.style.display = 'none';
+            facultyInfo.style.display = 'none';
+
+
+            setActiveLink(classesLink);
+        });
+
+        studentsLink.addEventListener('click', () => {
+            dashboardContent.style.display = 'none';
+            classesContent.style.display = 'none';
+            studentsContent.style.display = 'block';
+            facultyContent.style.display = 'none';
+            facultyInfo.style.display = 'none';
+            facultyInfo.style.display = 'none';
+
+            setActiveLink(studentsLink);
+        });
+
+        facultyLink.addEventListener('click', () => {
+            dashboardContent.style.display = 'none';
+            classesContent.style.display = 'none';
+            studentsContent.style.display = 'none';
+            facultyContent.style.display = 'block';
+            studentInfo.style.display = 'none';
+
+            setActiveLink(facultyLink);
+        });
+
+        function setActiveLink(link) {
+            document.querySelectorAll('.nav-link').forEach((nav) => {
+                nav.classList.remove('active');
+            });
+            link.classList.add('active');
+        }
+
+        // Function for student info
+        function showStudentInfo(name, lrn, section, email, parent, parentemail, contactnumber,  photo) {
+            document.getElementById('student-name').textContent = name;
+            document.getElementById('student-lrn').textContent = lrn;
+            document.getElementById('student-section').textContent = section;
+            document.getElementById('student-email').textContent = email;
+            document.getElementById('parent-name').textContent = parent;
+            document.getElementById('parent-email').textContent = parentemail;
+            document.getElementById('parent-contact').textContent = contactnumber;
+            document.getElementById('student-photo').src = photo;
+
+            document.getElementById('student-info').style.display = 'block';
+        }
+
+        //function for faculty info
+        function showFacultyInfo(name, position, facultynumber, facultyemail, photo) {
+            document.getElementById('faculty-name').textContent = name;
+            document.getElementById('faculty-position').textContent = position;
+            document.getElementById('faculty-number').textContent = facultynumber;
+            document.getElementById('faculty-email').textContent = facultyemail;
+            document.getElementById('faculty-photo').src = photo;
+
+            document.getElementById('faculty-info').style.display = 'block';
+
+
+        }
+    </script>
+</body>
+
+</html>
