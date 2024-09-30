@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -251,7 +251,7 @@
         <div class="content">
             <!-- Dashboard Overview -->
             <div id="dashboard-content">
-                <h2 class="mt-4">ADMIN DASHBOARD</h2>
+                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">ADMIN DASHBOARD</h2>
                 <div class="d-flex justify-content-around mt-4">
                     <div class="stat-box">
                         <h3>STUDENTS</h3>
@@ -355,19 +355,25 @@
 
             <!-- Classes Content -->
             <div id="classes-content" style="display: none;">
-                <h2 class="mt-4">CLASSES</h2>
+                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">SECTIONS</h2>
+                <br/><h3>Grade 11</h3>
                 <div class="d-flex flex-wrap justify-content-around">
-                    <div class="btn btn-success btn-lg m-2">G11-Nazareth</div>
-                    <div class="btn btn-light btn-lg m-2">G11-Boromeo</div>
-                    <div class="btn btn-light btn-lg m-2">G12-Jordan</div>
-                    <div class="btn btn-light btn-lg m-2">G12-Victory</div>
+                    <div class="btn btn-outline-success btn-lg m-2">Nazareth - GAS</div>
+                    <div class="btn btn-outline-success btn-lg m-2">Boromeo - HUMMS</div>
                     <div class="btn btn-outline-success btn-lg m-2">+</div>
                 </div>
+
+                    <br/><h3>Grade 12</h3>
+                    <div class="d-flex flex-wrap justify-content-around">
+                        <div class="btn btn-outline-success btn-lg m-2">Jordan - GAS</div>
+                        <div class="btn btn-outline-success btn-lg m-2">Victory - HUMMS</div>
+                        <div class="btn btn-outline-success btn-lg m-2">+</div>
+                    </div>
             </div>
 
             <!-- Students Content -->
             <div id="students-content" style="display: none;">
-                <h2 class="mt-4">STUDENTS</h2>
+                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">STUDENTS</h2><br/>
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Grade 11 - Nazareth</h4>
@@ -381,18 +387,19 @@
 
                     </div>
                     <div class="col-md-6">
-                        <h4>Grade 12 - Jordan</h4>
+                        <br/><h4>Grade 12 - Jordan</h4>
                         <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Jade Ensomo', '987654321', 'G12-Jordan', 'jade@gmail.com', 'Pinner Ensomo', 'ensomo@gmail.com', '09333333333', 'https://via.placeholder.com/150')">Ensomo, Jade</button><br />
                         <div class="btn btn-outline-success btn-lg m-2">+</div>
                     </div>
                     <div class="col-md-6">
-                        <h4>Grade 12 - Victory</h4>
+                        <br/><h4>Grade 12 - Victory</h4>
                         <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Karl Smith', '112233446', 'G12-Jordan', 'karl@gmail.com', 'Jane Smith', 'smith@gmail.com', '09444444444', 'https://via.placeholder.com/150')">Smith, Karl</button><br />
                         <div class="btn btn-outline-success btn-lg m-2">+</div>
 
                     </div>
                 </div>
                 <div id="student-info">
+                    <button id="close-student-info" class="btn btn-danger" style="float: right; border: none; cursor: pointer;">&times;</button>
                     <h4>Student Details</h4>
                     <img id="student-photo" src="https://via.placeholder.com/150" alt="Student Photo">
                     <p><strong>Name:</strong> <span id="student-name"></span></p>
@@ -418,17 +425,18 @@
             </div>
 
             <div id="faculty-content" style="display: none;">
-                <h2 class="m-4">Faculty</h2>
+                <h2 class="m-4">FACULTY</h2>
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Jannet Bautista', 'English Teacher', '09555555555', 'bautista@gmail.com', 'https://via.placeholder.com/150')">Bautista, Jannet</button><br />
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Micky Davila', 'ICT Teacher', '09666666666', 'davila@gmail.com', 'https://via.placeholder.com/150')">Davila, Micky</button><br />
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Sheryl Buo', 'Mathematics Teacher', '09777777777', 'ryl@gmail.com', 'https://via.placeholder.com/150')">Buo, Sheryl</button><br />
 
-                <h2 class="m-4">Staff</h2>
+                <h2 class="m-4">STAFF</h2>
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Mike Katakutan', 'Librarian', '09888888888', 'mike@gmail.com', 'https://via.placeholder.com/150')">Katakutan, Mike</button><br />
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Jerwin Villanueva', 'Canteen staff', '09122222222', 'jerwin@gmail.com', 'https://via.placeholder.com/150')">Villanueva, Jerwin</button><br />
 
             </div>
             <div id="faculty-info">
+                <button id="close-faculty-info" class="btn btn-danger" style="float: right; border: none; cursor: pointer;">&times;</button>                
                 <h4>Faculty Details</h4>
                 <img id="faculty-photo" src="https://via.placeholder.com/150" alt="Faculty Photo">
                 <p><strong>Name:</strong> <span id="faculty-name"></span></p>
@@ -528,6 +536,10 @@
             document.getElementById('student-photo').src = photo;
 
             document.getElementById('student-info').style.display = 'block';
+
+            document.getElementById('close-student-info').onclick = function () {
+                document.getElementById('student-info').style.display = 'none';
+            };
         }
 
         //function for faculty info
@@ -540,7 +552,9 @@
 
             document.getElementById('faculty-info').style.display = 'block';
 
-
+            document.getElementById('close-faculty-info').onclick = function () {
+                document.getElementById('faculty-info').style.display = 'none';
+            };
         }
     </script>
 </body>
