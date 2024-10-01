@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .top-bar {
+            border: 2.5px solid #228b22;
+            background-color: #d4ebda;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .student-names {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .student-names .name {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #228b22;
+            border-bottom: 2px solid transparent;
+            padding: 5px 10px;
+        }
+
+        .student-names .name:hover,
+        .student-names .name.active {
+            border-bottom: 2px solid #228b22;
+            font-weight: bold;
+        }
+
+        .back-button {
+            display: none;
+            margin: 20px;
+            cursor: pointer;
+            background-color: #228b22;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .canteen-table {
+            margin-top: 30px;
+            width: 80%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .canteen-table th,
+        .canteen-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .canteen-table th {
+            background-color: #228b22;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .canteen-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .add-item-form {
+            margin-top: 30px;
+            width: 50%;
+        }
+
+        .add-item-form input,
+        .add-item-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .add-item-form button {
+            width: 100%;
+            background-color: #228b22;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .add-item-form button:hover {
+            background-color: #1e7c1e;
+        }
+
+        .edit-status-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .edit-status-form select {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .edit-status-form button {
+            background-color: #228b22;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="student-info">
+            <img src="https://via.placeholder.com/50" alt="Student Photo">
+            <div class="name">Andrew C. Peña</div>
+        </div>
+        <div class="notification-icons">
+            <button id="notificationBell" class="icon btn btn-link" style="font-size: 2rem; color: #228b22;" data-toggle="modal" data-target="#absenceModal">
+                <i class="fas fa-bell"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <!-- Add Item Form at the Top -->
+        <div class="add-item-form" id="addItemForm">
+            <h3>Add New Item</h3>
+            <select id="studentSelect" required>
+                <option value="">Select Student</option>
+                <option value="andrew">Andrew C. Peña</option>
+                <option value="john">John Dela Cruz</option>
+                <option value="maria">Maria Santos</option>
+            </select>
+            <input type="text" id="itemName" placeholder="Item Name" required>
+            <input type="number" id="itemPrice" placeholder="Price" required>
+            <button onclick="addItem()">Save Item</button>
+        </div>
+
+        <!-- Back Button -->
+        <button id="backButton" class="back-button" onclick="showStudentNames()">Back to Students</button>
+
+        <!-- Student Names in the Middle -->
+        <div class="student-names" id="studentNames">
+            <div class="name" onclick="showTransactions('andrew')">Andrew C. Peña</div>
+            <div class="name" onclick="showTransactions('john')">John Dela Cruz</div>
+            <div class="name" onclick="showTransactions('maria')">Maria Santos</div>
+        </div>
+
+        <!-- Canteen Transaction Table -->
+        <table class="canteen-table hidden" id="canteenTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>SSQR</th>
+                </tr>
+            </thead>
+            <tbody id="transactionBody"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-right"><strong>Total</strong></td>
+                    <td><strong id="totalAmount"></strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        let currentStudent = null;
+        const students = {
+            'andrew': [
+                { date: '6/22/24', item: 'Mountain Dew', price: 25, status: 'Paid', ssqr: 'Paid screenshot' },
+                { date: '6/22/24', item: 'Rice Meal (2 rice)', price: 70, status: 'Pending', ssqr: '' },
+                { date: '6/23/24', item: '1.5L Coke', price: 85, status: 'Pending', ssqr: '' },
+            ],
+            'john': [
+                { date: '6/25/24', item: 'Pepsi', price: 20, status: 'Pending', ssqr: '' },
+                { date: '6/26/24', item: 'Burger Steak', price: 65, status: 'Pending', ssqr: '' },
+                { date: '6/27/24', item: 'Sprite', price: 25, status: 'Pending', ssqr: '' },
+            ],
+            'maria': [
+                { date: '6/29/24', item: '7-Up', price: 20, status: 'Pending', ssqr: '' },
+                { date: '6/30/24', item: 'Chicken Fillet', price: 70, status: 'Pending', ssqr: '' },
+                { date: '7/01/24', item: 'Water', price: 15, status: 'Pending', ssqr: '' },
+            ]
+        };
+
+        function showTransactions(student) {
+            currentStudent = student;
+            const transactionBody = document.getElementById('transactionBody');
+            transactionBody.innerHTML = '';
+
+            const selectedStudent = students[student];
+            let total = 0;
+
+            selectedStudent.forEach((transaction) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction.date}</td>
+                    <td>${transaction.item}</td>
+                    <td>P ${transaction.price.toFixed(2)}</td>
+                    <td>${transaction.status}</td>
+                    <td>${transaction.ssqr}</td>
+                `;
+                transactionBody.appendChild(row);
+                total += transaction.price;
+            });
+
+            document.getElementById('totalAmount').innerText = `P ${total.toFixed(2)}`;
+            document.getElementById('canteenTable').classList.remove('hidden');
+
+            // Hide student names and show back button
+            document.getElementById('studentNames').classList.add('hidden');
+            document.getElementById('backButton').style.display = 'block';
+        }
+
+        function showStudentNames() {
+            currentStudent = null;
+            document.getElementById('canteenTable').classList.add('hidden');
+            document.getElementById('studentNames').classList.remove('hidden');
+            document.getElementById('backButton').style.display = 'none';
+        }
+
+        function addItem() {
+            const date = new Date().toLocaleString(); // Automatically captures current time
+            const studentName = document.getElementById('studentSelect').value;
+            const itemName = document.getElementById('itemName').value;
+            const price = parseFloat(document.getElementById('itemPrice').value);
+            const status = 'Pending'; // Default status is set to 'Pending'
+            const ssqr = ''; // SSQR is initially empty, to be filled later
+
+            if (studentName && itemName && price) {
+                const newItem = {
+                    date: date,
+                    item: itemName,
+                    price: price,
+                    status: status,
+                    ssqr: ssqr
+                };
+
+                students[studentName].push(newItem);
+                if (currentStudent === studentName) {
+                    showTransactions(studentName);
+                }
+
+                // Clear the form
+                document.getElementById('studentSelect').value = '';
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemPrice').value = '';
+            } else {
+                alert("Please fill out all required fields!");
+            }
+        }
+    </script>
+</body>
+</html>
