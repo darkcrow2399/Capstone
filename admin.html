@@ -194,6 +194,132 @@
                 border-radius: 10px;
                 margin-bottom: 15px;
             }
+
+        .certificate-container {
+            width: 80%;
+            max-width: 900px;
+            background-color: white;
+            padding: 40px;
+            margin: 40px auto; 
+            border: 2px solid #000;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center; 
+            text-align: center;
+        }
+
+        .certificate-border {
+            border: 8px solid #333;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #fdfaf6;
+            width: 100%; 
+        }
+
+        .certificate-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .fraktur-text {
+            font-family: 'Cloister Black', cursive;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .suez-text {
+            font-family: 'Suez', sans-serif;
+            color: #333;
+            text-align: center;
+        }
+
+        .small-text {
+            font-size: 1.2rem;
+        }
+
+        h1, h3 {
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+        }
+
+        .italic-text {
+            font-family: 'Georgia', italic;
+            font-size: 1.4rem;
+            margin: 10px 0;
+            color: #333;
+            text-align: center;
+        }
+
+        h2[contenteditable="true"] {
+            font-family: 'Cloister Black', cursive;
+            font-size: 2.5rem;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #34495e;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .learner-ref {
+            font-family: 'Suez', sans-serif;
+            font-size: 1.5rem;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .editable-date {
+            display: inline-block;
+            border-bottom: 1px solid #333;
+            padding: 0 5px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .signatures {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+            .signatures strong {
+                font-size: 1.2rem;
+                display: block;
+            }
+
+        .certificate-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .download-button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+        }
+
+
     </style>
 </head>
 
@@ -239,7 +365,7 @@
                     <a class="nav-link" href="#" id="faculty-link">Faculty/Staff</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Diploma Generator</a>
+                    <a class="nav-link" href="#" id="certificate-link">Diploma Generator</a>
                 </li>
                 <li class="nav-item mt-auto">
                     <a class="nav-link" href="#">LOGOUT</a>
@@ -356,24 +482,24 @@
             <!-- Classes Content -->
             <div id="classes-content" style="display: none;">
                 <h2 class="mt-4" style="color: #228b22; font-weight: bold;">SECTIONS</h2>
-                <br/><h3>Grade 11</h3>
+                <br /><h3>Grade 11</h3>
                 <div class="d-flex flex-wrap justify-content-around">
                     <div class="btn btn-outline-success btn-lg m-2">Nazareth - GAS</div>
                     <div class="btn btn-outline-success btn-lg m-2">Boromeo - HUMMS</div>
                     <div class="btn btn-outline-success btn-lg m-2">+</div>
                 </div>
 
-                    <br/><h3>Grade 12</h3>
-                    <div class="d-flex flex-wrap justify-content-around">
-                        <div class="btn btn-outline-success btn-lg m-2">Jordan - GAS</div>
-                        <div class="btn btn-outline-success btn-lg m-2">Victory - HUMMS</div>
-                        <div class="btn btn-outline-success btn-lg m-2">+</div>
-                    </div>
+                <br /><h3>Grade 12</h3>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="btn btn-outline-success btn-lg m-2">Jordan - GAS</div>
+                    <div class="btn btn-outline-success btn-lg m-2">Victory - HUMMS</div>
+                    <div class="btn btn-outline-success btn-lg m-2">+</div>
+                </div>
             </div>
 
             <!-- Students Content -->
             <div id="students-content" style="display: none;">
-                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">STUDENTS</h2><br/>
+                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">STUDENTS</h2><br />
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Grade 11 - Nazareth</h4>
@@ -387,12 +513,12 @@
 
                     </div>
                     <div class="col-md-6">
-                        <br/><h4>Grade 12 - Jordan</h4>
+                        <br /><h4>Grade 12 - Jordan</h4>
                         <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Jade Ensomo', '987654321', 'G12-Jordan', 'jade@gmail.com', 'Pinner Ensomo', 'ensomo@gmail.com', '09333333333', 'https://via.placeholder.com/150')">Ensomo, Jade</button><br />
                         <div class="btn btn-outline-success btn-lg m-2">+</div>
                     </div>
                     <div class="col-md-6">
-                        <br/><h4>Grade 12 - Victory</h4>
+                        <br /><h4>Grade 12 - Victory</h4>
                         <button class="btn btn-outline-success mb-2" onclick="showStudentInfo('Karl Smith', '112233446', 'G12-Jordan', 'karl@gmail.com', 'Jane Smith', 'smith@gmail.com', '09444444444', 'https://via.placeholder.com/150')">Smith, Karl</button><br />
                         <div class="btn btn-outline-success btn-lg m-2">+</div>
 
@@ -425,6 +551,7 @@
             </div>
 
             <div id="faculty-content" style="display: none;">
+                <h2 class="mt-4" style="color: #228b22" ; font-weight: bold;">FACULTY AND STAFF</h2>
                 <h2 class="m-4">FACULTY</h2>
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Jannet Bautista', 'English Teacher', '09555555555', 'bautista@gmail.com', 'https://via.placeholder.com/150')">Bautista, Jannet</button><br />
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Micky Davila', 'ICT Teacher', '09666666666', 'davila@gmail.com', 'https://via.placeholder.com/150')">Davila, Micky</button><br />
@@ -436,7 +563,7 @@
 
             </div>
             <div id="faculty-info">
-                <button id="close-faculty-info" class="btn btn-danger" style="float: right; border: none; cursor: pointer;">&times;</button>                
+                <button id="close-faculty-info" class="btn btn-danger" style="float: right; border: none; cursor: pointer;">&times;</button>
                 <h4>Faculty Details</h4>
                 <img id="faculty-photo" src="https://via.placeholder.com/150" alt="Faculty Photo">
                 <p><strong>Name:</strong> <span id="faculty-name"></span></p>
@@ -456,11 +583,48 @@
                 </div>
 
             </div>
+
+            <!--diploma generator section-->
+            <div class="certificate-container" id="certificate-content">
+                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">STUDENT DIPLOMA</h2><br />
+
+                <div class="certificate-border">
+                    <div class="certificate-header">
+                        <h3 class="fraktur-text small-text">Republic of the Philippines</h3>
+                        <h3 class="fraktur-text">Republika ng Philipinas</h3>
+                        <h3 class="fraktur-text small-text">Department of Education</h3>
+                        <h3 class="fraktur-text">Kagawaran ng Edukasyon</h3>
+                        <h3 class="fraktur-text small-text">Region IV</h3>
+                        <h3 class="fraktur-text">Rehiyon IV</h3>
+                        <h1 class="fraktur-text">Seminario de San Jose</h1>
+                        <h1 class="italic-text fraktur-text">LUNGSOD NG PUERTO PRINCESA</h1>
+                        <p class="italic-text suez-text">CITY OF PUERTO PRINCESA</p>
+                        <h1 class="italic-text fraktur-text">ITO AY NAGPAPATUNAY NA</h1>
+                        <p class="italic-text suez-text">THIS CERTIFIES THAT</p>
+                        <h2 id="student-name" class="fraktur-text" contenteditable="true">[Click to Edit Student Name]</h2>
+                        <h1 class="learner-ref">Learner Reference Number (LRN): <span contenteditable="true">783287135512</span></h1>
+                        <p class="italic-text suez-text">HAS SATISFACTORILY COMPLETED THE REQUIREMENTS OF JUNIOR HIGH SCHOOL PRESCRIBED FOR</p>
+                        <h1 class="italic-text fraktur-text">AY NAGKAROON NG KANILANG KATANGGAPAN SA MGA KINAKAILANGAN NG JUNIOR HIGH SCHOOL NA ITINALAGA PARA SA</h1>
+                        <p class="italic-text suez-text">SECONDARY SCHOOL OF THE PHILIPPINES AND IS THEREFORE ENTITLED TO THIS</p>
+                        <h1 class="italic-text fraktur-text">PANGALAWANG ANTAS NG EDUKASYON SA PILIPINAS AT KAYA NAMAN AY KINIKILALA NG CERTIFICATE NA ITO</h1>
+                        <h3 class="fraktur-text">CERTIFICATE</h3>
+                        <h3 class="fraktur-text">SERTIPIKO</h3>
+                        <p class="italic-text suez-text">SIGNED AT THE CITY OF PUERTO PRINCESA, PHILIPPINES THIS [Day] DAY OF [Month] IN THE YEAR [Year]</p>
+                        <h1 class="italic-text fraktur-text">PINIRMAHAN SA LUNGSOD NG PUERTO PRINCESA, PILIPINAS NITO ANG [Day] ARAW NG [Month] TAON [Year]</h1>
+                        <div class="signatures">
+                            <p><strong>REV. FR. EUGENE S. ELIVERA, SThD</strong></p>
+                            <p>Rektor/Prinsipal</p>
+                            <button class="download-button" onclick="downloadCertificate()">Generate Certificate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+
 
     <script>
         // JavaScript tab
+
         const dashboardLink = document.getElementById('dashboard-link');
         const classesLink = document.getElementById('classes-link');
         const studentsLink = document.getElementById('students-link');
@@ -471,15 +635,17 @@
         const facultyContent = document.getElementById('faculty-content');
         const studentInfo = document.getElementById('student-info');
         const facultyInfo = document.getElementById('faculty-info');
+        const certificateLink = document.getElementById('certificate-link');
+        const certificateContent = document.getElementById('certificate-content');
 
-        // Functions to manage tab visibility
         dashboardLink.addEventListener('click', () => {
             dashboardContent.style.display = 'block';
             classesContent.style.display = 'none';
             studentsContent.style.display = 'none';
             facultyContent.style.display = 'none';
-            studentInfo.style.display = 'none'; 
+            studentInfo.style.display = 'none';
             facultyInfo.style.display = 'none';
+            certificateContent.style.display = 'none';
 
             setActiveLink(dashboardLink);
         });
@@ -491,6 +657,8 @@
             facultyContent.style.display = 'none';
             studentInfo.style.display = 'none';
             facultyInfo.style.display = 'none';
+            certificateContent.style.display = 'none';
+
 
 
             setActiveLink(classesLink);
@@ -502,7 +670,8 @@
             studentsContent.style.display = 'block';
             facultyContent.style.display = 'none';
             facultyInfo.style.display = 'none';
-            facultyInfo.style.display = 'none';
+            certificateContent.style.display = 'none';
+
 
             setActiveLink(studentsLink);
         });
@@ -513,8 +682,23 @@
             studentsContent.style.display = 'none';
             facultyContent.style.display = 'block';
             studentInfo.style.display = 'none';
+            certificateContent.style.display = 'none';
+
 
             setActiveLink(facultyLink);
+        });
+
+        certificateLink.addEventListener('click', () => {
+            dashboardContent.style.display = 'none';
+            classesContent.style.display = 'none';
+            studentsContent.style.display = 'none';
+            facultyContent.style.display = 'none';
+            studentInfo.style.display = 'none';
+            certificateContent.style.display = 'block';
+            facultyInfo.style.display = 'none';
+
+
+            setActiveLink(certificateLink);
         });
 
         function setActiveLink(link) {
@@ -525,7 +709,7 @@
         }
 
         // Function for student info
-        function showStudentInfo(name, lrn, section, email, parent, parentemail, contactnumber,  photo) {
+        function showStudentInfo(name, lrn, section, email, parent, parentemail, contactnumber, photo) {
             document.getElementById('student-name').textContent = name;
             document.getElementById('student-lrn').textContent = lrn;
             document.getElementById('student-section').textContent = section;
@@ -556,6 +740,8 @@
                 document.getElementById('faculty-info').style.display = 'none';
             };
         }
+
+
     </script>
 </body>
 
