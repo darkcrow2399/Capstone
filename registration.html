@@ -153,7 +153,6 @@
                                 <div class="d-flex">
                                     <input type="text" class="form-control me-2" id="city" placeholder="City" required>
                                     <input type="text" class="form-control me-2" id="province" placeholder="Province" required>
-                                    <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" required>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +212,6 @@
                             <div class="d-flex">
                                 <input type="text" class="form-control me-2" id="city" placeholder="City" required>
                                 <input type="text" class="form-control me-2" id="province" placeholder="Province" required>
-                                <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" required>
                             </div>
                         </div>
                     </div>
@@ -243,7 +241,7 @@
             const gradeLevel = document.getElementById("gradeLevel").value;
             const section = document.getElementById("section");
 
-            section.innerHTML = ""; 
+            section.innerHTML = "";
 
             if (gradeLevel === "grade11") {
                 section.options.add(new Option("Nazareth", "nazareth"));
