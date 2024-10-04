@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario de San Jose Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('b1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: rgba(245, 245, 245, 0.9);
+            border: 3px solid #228b22;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-family: 'Garamond', serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2a5d2a;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #2a5d2a;
+            margin: 5px 0;
+        }
+
+        /* Registration Box Styles */
+        .register-box {
+            background-color: rgba(245, 245, 245, 0.9);
+            border: 3px solid #228b22;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+            .register-box h2 {
+                font-size: 1.5rem;
+                color: #2a5d2a;
+                font-weight: bold;
+            }
+
+        /* Form Elements */
+        .form-control, .form-select {
+            background-color: #ffffff;
+            border: 1px solid #2a5d2a;
+        }
+
+        .btn-success {
+            background-color: #2a5d2a;
+            border: none;
+        }
+
+            .btn-success:hover {
+                background-color: #237a23;
+            }
+
+        .btn-secondary {
+            margin-left: 10px;
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="header">
+            <img src="logo.jpg" alt="Seminario Logo" style="width: 65px; height: auto;" class="img-fluid mt-3">
+            <h1 class="title">Seminario de San Jose</h1>
+            <p>Tiniguiban, Puerto Princesa City, Palawan</p>
+        </div>
+
+        <div class="register-box mt-5 p-4">
+            <h2>Registration</h2>
+
+            <form id="registrationForm">
+                <div class="mb-3">
+                    <label for="registerType" class="form-label">Register as</label>
+                    <select class="form-select" id="registerType" onchange="toggleRegistrationForm()">
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="librarian">Librarian</option>
+                        <option value="canteen-staff">Canteen Staff</option>
+                    </select>
+                </div>
+
+                <div id="studentForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="lrn" class="form-label">LRN (This will be your username)</label>
+                                <input type="text" class="form-control" id="lrn" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studentPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="studentPassword" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studentFirstName" class="form-label">Name</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control me-2" id="studentFirstName" placeholder="First Name" required>
+                                    <input type="text" class="form-control me-2" id="studentMiddleInitial" maxlength="1" placeholder="M.I.">
+                                    <input type="text" class="form-control" id="studentLastName" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studentGradeLevel" class="form-label">Grade Level, Section & Strand</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control me-2" id="gradeLevel" placeholder="Grade Level" required>
+                                    <input type="text" class="form-control me-2" id="section" placeholder="Section" required>
+                                    <input type="text" class="form-control" id="strand" placeholder="Strand" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studentEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="studentEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studentProfilePic" class="form-label">Profile Picture</label>
+                                <input type="file" class="form-control" id="studentProfilePic" accept="image/*" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="parentFirstName" class="form-label">Parent Name</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control me-2" id="parentFirstName" placeholder="First Name" required>
+                                    <input type="text" class="form-control" id="parentLastName" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="parentContact" class="form-label">Parent Contact Number</label>
+                                <input type="text" class="form-control" id="parentContact" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="parentEmail" class="form-label">Parent Email</label>
+                                <input type="email" class="form-control" id="parentEmail" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="staffForm" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="staffUsername" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="staffUsername" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="staffPassword" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="staffPassword" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="staffProfilePic" class="form-label">Profile Picture</label>
+                                <input type="file" class="form-control" id="staffProfilePic" accept="image/*" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="staffName" class="form-label">Full Name</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control me-2" id="staffFirstName" placeholder="First Name" required>
+                                    <input type="text" class="form-control me-2" id="staffMiddleInitial" maxlength="1" placeholder="M.I.">
+                                    <input type="text" class="form-control" id="staffLastName" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="staffEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="staffEmail" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleRegistrationForm() {
+            const registerType = document.getElementById("registerType").value;
+            const studentForm = document.getElementById("studentForm");
+            const staffForm = document.getElementById("staffForm");
+
+            if (registerType === "student") {
+                studentForm.style.display = "block";
+                staffForm.style.display = "none";
+            } else {
+                studentForm.style.display = "none";
+                staffForm.style.display = "block";
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
