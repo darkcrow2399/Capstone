@@ -343,7 +343,7 @@
                     <a class="nav-link" id="canteen-tab" data-toggle="tab" href="#canteen" role="tab" aria-controls="canteen" aria-selected="false">Canteen</a>
                 </li>
                 <li class="nav-item mt-auto">
-                    <a class="nav-link" href="#">Logout</a>
+                    <a class="nav-link" href="javascript:void(0)" onclick="confirmLogout()">Logout</a>
                 </li>
             </ul>
             <img src="logo.jpg" alt="Logo" class="logo">
@@ -490,7 +490,14 @@
         });
     </script>
     <script>
-        // JavaScript for Attendance Calendar
+        function confirmLogout() {
+            const userConfirmed = confirm("Are you sure you want to logout?");
+
+            if (userConfirmed) {
+
+                window.location.href = 'login.html';
+            }
+        }
         const months = [
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
