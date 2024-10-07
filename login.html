@@ -42,7 +42,7 @@
 
         /* Login Box Styles */
         .login-box {
-            position: relative; 
+            position: relative;
             background-color: rgba(245, 245, 245, 0.9);
             border: 3px solid #228b22;
             border-radius: 10px;
@@ -51,7 +51,7 @@
             padding: 20px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
-            z-index: 1; 
+            z-index: 1;
         }
 
             .login-box::before {
@@ -71,8 +71,8 @@
             }
 
             .login-box h2, .login-box p {
-                position: relative; 
-                z-index: 1; 
+                position: relative;
+                z-index: 1;
             }
 
 
@@ -129,7 +129,7 @@
 
         <!-- Login Box -->
         <div class="login-box mt-5 p-4">
-            <h2>Integrated School Monitoring System</h2>
+            <h2 style="font-family: 'Garamond', serif; font-weight: bold; color: #2a5d2a;">Integrated School Monitoring System</h2>
             <p>Enhancing Efficiency and Transparency</p>
 
             <form id="loginForm">
@@ -194,7 +194,7 @@
             const email = document.getElementById('email').value;
 
             if (email) {
-                alert('A 6-digit OTP has been sent to ' + email); 
+                alert('A 6-digit OTP has been sent to ' + email);
                 document.getElementById('otpInputSection').style.display = 'block';
             } else {
                 alert('Please enter a valid email address.');
@@ -203,7 +203,7 @@
 
         function verifyOTP() {
             const otp = document.getElementById('otp').value;
-            const validOTP = "123456";  
+            const validOTP = "123456";
 
             if (otp === validOTP) {
                 alert("OTP Verified! You can now reset your password.");
@@ -213,13 +213,14 @@
         }
 
         function login() {
+            const loginType = document.getElementById('loginType').value;
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            if (username && password) {
-                alert('Logging in...'); 
+            if (loginType === 'student' && username === '123456789' && password === 'andrew') {
+                window.location.href = 'student.html';
             } else {
-                alert('Please fill out all required fields.');
+                alert('Invalid credentials. Please try again.');
             }
         }
     </script>
