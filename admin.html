@@ -11,8 +11,9 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            min-height: 100%;
             margin: 0;
+            background-color: #f0f2f5;
         }
 
         .wrapper {
@@ -23,10 +24,10 @@
         .sidebar {
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            border: 1px solid #228b22;
+            height: 130vh;
+            border-right: 3px solid #228b22;
             min-width: 200px;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             padding: 20px;
         }
 
@@ -35,18 +36,27 @@
                 font-size: 1.2rem;
                 margin-bottom: 10px;
                 cursor: pointer;
+                font-family: 'Garamond', serif;
             }
 
                 .sidebar .nav-link.active {
-                    background-color: #28a745;
+                    background-color: #2a5d2a;
                     color: white;
                     border-radius: 5px;
                 }
+            .sidebar .logo {
+                width: 100%;
+                max-width: 150px;
+                margin-top: auto;
+                margin-bottom: 30px;
+                align-self: center;
+            }
 
         .top-bar {
-            border: 2.5px solid #228b22;
-            background-color: #d4ebda;
-            padding: 10px;
+            border-bottom: 2.25px solid black;
+            background-color: #2a5d2a;
+            padding: 8px;
+            padding-bottom: 1px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -63,10 +73,11 @@
         }
 
             .Admin-info img {
-                width: 50px;
-                height: 50px;
+                width: 70px;
+                height: 70px;
                 border-radius: 50%;
-                margin-right: 10px;
+                margin-right: 20px;
+                margin-left: 20px;
             }
 
             .Admin-info .name {
@@ -76,6 +87,7 @@
 
             .Admin-info .role {
                 font-size: 1rem;
+                color: #6c757d;
             }
 
         .notification-icons {
@@ -84,8 +96,8 @@
         }
 
             .notification-icons .icon {
-                font-size: 2.5rem;
-                color: #228b22;
+                font-size: 2rem;
+                color: white;
                 cursor: pointer;
             }
 
@@ -125,7 +137,7 @@
                 border: none;
                 background: none;
                 cursor: pointer;
-                color: #228b22;
+                color: #2a5d2a;
             }
 
         .dashboard-table {
@@ -147,7 +159,7 @@
             }
 
             .dashboard-table th {
-                background-color: #228b22;
+                background-color: #2a5d2a;
                 color: #fff;
                 font-weight: bold;
             }
@@ -175,6 +187,7 @@
                 border-radius: 10px;
                 margin-bottom: 15px;
             }
+
         #faculty-info {
             display: none;
             border: 1px solid #ddd;
@@ -200,15 +213,15 @@
             max-width: 900px;
             background-color: white;
             padding: 40px;
-            margin: 40px auto; 
+            margin: 40px auto;
             border: 2px solid #000;
             border-radius: 12px;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             position: relative;
-            display: flex; 
-            flex-direction: column; 
+            display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: center; 
+            align-items: center;
             text-align: center;
         }
 
@@ -217,7 +230,7 @@
             padding: 40px;
             border-radius: 10px;
             background-color: #fdfaf6;
-            width: 100%; 
+            width: 100%;
         }
 
         .certificate-header {
@@ -318,8 +331,13 @@
             font-family: 'Arial', sans-serif;
             font-weight: bold;
         }
-
-
+        h4 {
+            font-family: 'Garamond', serif;
+            color: #2a5d2a;
+            text-align: center;
+            letter-spacing: 2px;
+            line-height: 1.5;
+        }
     </style>
 </head>
 
@@ -329,8 +347,8 @@
         <div class="Admin-info">
             <img src="https://via.placeholder.com/50" alt="Admin Photo">
             <div>
-                <div class="name">Micky Davila</div>
-                <div class="role">ADMIN</div>
+                <div class="name" style="color: white; font-family: 'Garamond', serif; font-size: 24px;">Micky Davila</div>
+                <div class="role" style="color: white; font-family: 'Garamond', serif; font-size: 24px;">ADMIN</div>
             </div>
         </div>
 
@@ -344,7 +362,6 @@
 
         <div class="notification-icons">
             <i class="fas fa-bell icon"></i>
-            <i class="fas fa-cog icon"></i>
         </div>
     </div>
 
@@ -371,13 +388,15 @@
                     <a class="nav-link" href="#">LOGOUT</a>
                 </li>
             </ul>
+            <img src="logo.jpg" alt="Logo" class="logo">
+            <h4>FIDES <br /> ET <br /> FORTITUDO</h4><br />
         </nav>
 
         <!-- Main Content -->
         <div class="content">
             <!-- Dashboard Overview -->
             <div id="dashboard-content">
-                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">ADMIN DASHBOARD</h2>
+                <h2 class="mt-4" style="color: #2a5d2a; font-weight: bold; font-family: 'Garamond', serif;">ADMIN DASHBOARD</h2>
                 <div class="d-flex justify-content-around mt-4">
                     <div class="stat-box">
                         <h3>STUDENTS</h3>
@@ -415,14 +434,14 @@
                             <td>Andrew Pena</td>
                             <td>Nazareth</td>
                             <td>Grade 11</td>
-                            <td>GAS</td>
+                            <td>STEM</td>
                         </tr>
                         <tr>
                             <td>987654321</td>
                             <td>Jade Ensomo</td>
                             <td>Jordan</td>
                             <td>Grade 12</td>
-                            <td>GAS</td>
+                            <td>STEM</td>
                         </tr>
                         <tr>
                             <td>112233445</td>
@@ -481,17 +500,17 @@
 
             <!-- Classes Content -->
             <div id="classes-content" style="display: none;">
-                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">SECTIONS</h2>
+                <h2 class="mt-4" style="color: #2a5d2a; font-weight: bold; font-family: 'Garamond', serif;">SECTIONS</h2>
                 <br /><h3>Grade 11</h3>
                 <div class="d-flex flex-wrap justify-content-around">
-                    <div class="btn btn-outline-success btn-lg m-2">Nazareth - GAS</div>
+                    <div class="btn btn-outline-success btn-lg m-2">Nazareth - STEM</div>
                     <div class="btn btn-outline-success btn-lg m-2">Boromeo - HUMMS</div>
                     <div class="btn btn-outline-success btn-lg m-2">+</div>
                 </div>
 
                 <br /><h3>Grade 12</h3>
                 <div class="d-flex flex-wrap justify-content-around">
-                    <div class="btn btn-outline-success btn-lg m-2">Jordan - GAS</div>
+                    <div class="btn btn-outline-success btn-lg m-2">Jordan - STEM</div>
                     <div class="btn btn-outline-success btn-lg m-2">Victory - HUMMS</div>
                     <div class="btn btn-outline-success btn-lg m-2">+</div>
                 </div>
@@ -499,7 +518,7 @@
 
             <!-- Students Content -->
             <div id="students-content" style="display: none;">
-                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">STUDENTS</h2><br />
+                <h2 class="mt-4" style="color: #2a5d2a; font-weight: bold; font-family: 'Garamond', serif;">STUDENTS</h2>
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Grade 11 - Nazareth</h4>
@@ -551,7 +570,7 @@
             </div>
 
             <div id="faculty-content" style="display: none;">
-                <h2 class="mt-4" style="color: #228b22" ; font-weight: bold;">FACULTY AND STAFF</h2>
+                <h2 class="mt-4" style="color: #2a5d2a; font-weight: bold; font-family: 'Garamond', serif;">FACULTY AND STAFF</h2>
                 <h2 class="m-4">FACULTY</h2>
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Jannet Bautista', 'English Teacher', '09555555555', 'bautista@gmail.com', 'https://via.placeholder.com/150')">Bautista, Jannet</button><br />
                 <button class="btn btn-outline-success mb-2" onclick="showFacultyInfo('Micky Davila', 'ICT Teacher', '09666666666', 'davila@gmail.com', 'https://via.placeholder.com/150')">Davila, Micky</button><br />
@@ -586,7 +605,7 @@
 
             <!--diploma generator section-->
             <div class="certificate-container" id="certificate-content">
-                <h2 class="mt-4" style="color: #228b22; font-weight: bold;">STUDENT DIPLOMA</h2><br />
+                <h2 class="mt-4" style="color: #2a5d2a; font-weight: bold; font-family: 'Garamond', serif;">STUDENT DIPLOMA</h2>
 
                 <div class="certificate-border">
                     <div class="certificate-header">
@@ -622,127 +641,127 @@
         </div>
 
 
-    <script>
-        // JavaScript tab
+        <script>
+            // JavaScript tab
 
-        const dashboardLink = document.getElementById('dashboard-link');
-        const classesLink = document.getElementById('classes-link');
-        const studentsLink = document.getElementById('students-link');
-        const dashboardContent = document.getElementById('dashboard-content');
-        const classesContent = document.getElementById('classes-content');
-        const studentsContent = document.getElementById('students-content');
-        const facultyLink = document.getElementById('faculty-link');
-        const facultyContent = document.getElementById('faculty-content');
-        const studentInfo = document.getElementById('student-info');
-        const facultyInfo = document.getElementById('faculty-info');
-        const certificateLink = document.getElementById('certificate-link');
-        const certificateContent = document.getElementById('certificate-content');
+            const dashboardLink = document.getElementById('dashboard-link');
+            const classesLink = document.getElementById('classes-link');
+            const studentsLink = document.getElementById('students-link');
+            const dashboardContent = document.getElementById('dashboard-content');
+            const classesContent = document.getElementById('classes-content');
+            const studentsContent = document.getElementById('students-content');
+            const facultyLink = document.getElementById('faculty-link');
+            const facultyContent = document.getElementById('faculty-content');
+            const studentInfo = document.getElementById('student-info');
+            const facultyInfo = document.getElementById('faculty-info');
+            const certificateLink = document.getElementById('certificate-link');
+            const certificateContent = document.getElementById('certificate-content');
 
-        dashboardLink.addEventListener('click', () => {
-            dashboardContent.style.display = 'block';
-            classesContent.style.display = 'none';
-            studentsContent.style.display = 'none';
-            facultyContent.style.display = 'none';
-            studentInfo.style.display = 'none';
-            facultyInfo.style.display = 'none';
-            certificateContent.style.display = 'none';
+            dashboardLink.addEventListener('click', () => {
+                dashboardContent.style.display = 'block';
+                classesContent.style.display = 'none';
+                studentsContent.style.display = 'none';
+                facultyContent.style.display = 'none';
+                studentInfo.style.display = 'none';
+                facultyInfo.style.display = 'none';
+                certificateContent.style.display = 'none';
 
-            setActiveLink(dashboardLink);
-        });
-
-        classesLink.addEventListener('click', () => {
-            dashboardContent.style.display = 'none';
-            classesContent.style.display = 'block';
-            studentsContent.style.display = 'none';
-            facultyContent.style.display = 'none';
-            studentInfo.style.display = 'none';
-            facultyInfo.style.display = 'none';
-            certificateContent.style.display = 'none';
-
-
-
-            setActiveLink(classesLink);
-        });
-
-        studentsLink.addEventListener('click', () => {
-            dashboardContent.style.display = 'none';
-            classesContent.style.display = 'none';
-            studentsContent.style.display = 'block';
-            facultyContent.style.display = 'none';
-            facultyInfo.style.display = 'none';
-            certificateContent.style.display = 'none';
-
-
-            setActiveLink(studentsLink);
-        });
-
-        facultyLink.addEventListener('click', () => {
-            dashboardContent.style.display = 'none';
-            classesContent.style.display = 'none';
-            studentsContent.style.display = 'none';
-            facultyContent.style.display = 'block';
-            studentInfo.style.display = 'none';
-            certificateContent.style.display = 'none';
-
-
-            setActiveLink(facultyLink);
-        });
-
-        certificateLink.addEventListener('click', () => {
-            dashboardContent.style.display = 'none';
-            classesContent.style.display = 'none';
-            studentsContent.style.display = 'none';
-            facultyContent.style.display = 'none';
-            studentInfo.style.display = 'none';
-            certificateContent.style.display = 'block';
-            facultyInfo.style.display = 'none';
-
-
-            setActiveLink(certificateLink);
-        });
-
-        function setActiveLink(link) {
-            document.querySelectorAll('.nav-link').forEach((nav) => {
-                nav.classList.remove('active');
+                setActiveLink(dashboardLink);
             });
-            link.classList.add('active');
-        }
 
-        // Function for student info
-        function showStudentInfo(name, lrn, section, email, parent, parentemail, contactnumber, photo) {
-            document.getElementById('student-name').textContent = name;
-            document.getElementById('student-lrn').textContent = lrn;
-            document.getElementById('student-section').textContent = section;
-            document.getElementById('student-email').textContent = email;
-            document.getElementById('parent-name').textContent = parent;
-            document.getElementById('parent-email').textContent = parentemail;
-            document.getElementById('parent-contact').textContent = contactnumber;
-            document.getElementById('student-photo').src = photo;
-
-            document.getElementById('student-info').style.display = 'block';
-
-            document.getElementById('close-student-info').onclick = function () {
-                document.getElementById('student-info').style.display = 'none';
-            };
-        }
-
-        //function for faculty info
-        function showFacultyInfo(name, position, facultynumber, facultyemail, photo) {
-            document.getElementById('faculty-name').textContent = name;
-            document.getElementById('faculty-position').textContent = position;
-            document.getElementById('faculty-number').textContent = facultynumber;
-            document.getElementById('faculty-email').textContent = facultyemail;
-            document.getElementById('faculty-photo').src = photo;
-
-            document.getElementById('faculty-info').style.display = 'block';
-
-            document.getElementById('close-faculty-info').onclick = function () {
-                document.getElementById('faculty-info').style.display = 'none';
-            };
-        }
+            classesLink.addEventListener('click', () => {
+                dashboardContent.style.display = 'none';
+                classesContent.style.display = 'block';
+                studentsContent.style.display = 'none';
+                facultyContent.style.display = 'none';
+                studentInfo.style.display = 'none';
+                facultyInfo.style.display = 'none';
+                certificateContent.style.display = 'none';
 
 
-    </script>
+
+                setActiveLink(classesLink);
+            });
+
+            studentsLink.addEventListener('click', () => {
+                dashboardContent.style.display = 'none';
+                classesContent.style.display = 'none';
+                studentsContent.style.display = 'block';
+                facultyContent.style.display = 'none';
+                facultyInfo.style.display = 'none';
+                certificateContent.style.display = 'none';
+
+
+                setActiveLink(studentsLink);
+            });
+
+            facultyLink.addEventListener('click', () => {
+                dashboardContent.style.display = 'none';
+                classesContent.style.display = 'none';
+                studentsContent.style.display = 'none';
+                facultyContent.style.display = 'block';
+                studentInfo.style.display = 'none';
+                certificateContent.style.display = 'none';
+
+
+                setActiveLink(facultyLink);
+            });
+
+            certificateLink.addEventListener('click', () => {
+                dashboardContent.style.display = 'none';
+                classesContent.style.display = 'none';
+                studentsContent.style.display = 'none';
+                facultyContent.style.display = 'none';
+                studentInfo.style.display = 'none';
+                certificateContent.style.display = 'block';
+                facultyInfo.style.display = 'none';
+
+
+                setActiveLink(certificateLink);
+            });
+
+            function setActiveLink(link) {
+                document.querySelectorAll('.nav-link').forEach((nav) => {
+                    nav.classList.remove('active');
+                });
+                link.classList.add('active');
+            }
+
+            // Function for student info
+            function showStudentInfo(name, lrn, section, email, parent, parentemail, contactnumber, photo) {
+                document.getElementById('student-name').textContent = name;
+                document.getElementById('student-lrn').textContent = lrn;
+                document.getElementById('student-section').textContent = section;
+                document.getElementById('student-email').textContent = email;
+                document.getElementById('parent-name').textContent = parent;
+                document.getElementById('parent-email').textContent = parentemail;
+                document.getElementById('parent-contact').textContent = contactnumber;
+                document.getElementById('student-photo').src = photo;
+
+                document.getElementById('student-info').style.display = 'block';
+
+                document.getElementById('close-student-info').onclick = function () {
+                    document.getElementById('student-info').style.display = 'none';
+                };
+            }
+
+            //function for faculty info
+            function showFacultyInfo(name, position, facultynumber, facultyemail, photo) {
+                document.getElementById('faculty-name').textContent = name;
+                document.getElementById('faculty-position').textContent = position;
+                document.getElementById('faculty-number').textContent = facultynumber;
+                document.getElementById('faculty-email').textContent = facultyemail;
+                document.getElementById('faculty-photo').src = photo;
+
+                document.getElementById('faculty-info').style.display = 'block';
+
+                document.getElementById('close-faculty-info').onclick = function () {
+                    document.getElementById('faculty-info').style.display = 'none';
+                };
+            }
+
+
+        </script>
 </body>
 
 </html>
