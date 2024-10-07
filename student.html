@@ -184,6 +184,38 @@
                 text-align: center;
                 font-size: 1.5rem;
             }
+        .calendar-legend {
+            display: flex;
+            justify-content: flex-end; 
+            margin-bottom: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 8px;
+            margin-left: 8px;
+            border: 1px solid #000;
+        }
+
+        .present {
+            background-color: #28a745;
+        }
+
+        .absent {
+            background-color: #dc3545; 
+        }
+
+        .excused {
+            background-color: #fd7e14; 
+        }
+
 
         /* Library Navigation */
         .library-nav {
@@ -335,6 +367,17 @@
                         </button>
                     </div>
                     <div class="calendar mt-4">
+                        <div class="calendar-legend mb-3">
+                            <span class="legend-item">
+                                <span class="legend-box present"></span> Present
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-box absent"></span> Absent
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-box excused"></span> Excused
+                            </span>
+                        </div>
                         <table class="table table-bordered text-center calendar-table">
                             <thead>
                                 <tr>
